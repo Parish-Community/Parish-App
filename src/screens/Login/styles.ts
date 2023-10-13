@@ -24,8 +24,9 @@ const styles = StyleSheet.create({
     width: '86%',
     backgroundColor: '#FFF9DE',
     borderRadius: 10,
-    height: 50,
+    height: 60,
     padding: 20,
+    alignItems: 'center',
   },
   btnLogin: {
     width: '86%',
@@ -38,9 +39,11 @@ const styles = StyleSheet.create({
   },
   iconsPassword: {
     position: 'absolute',
-    right: 0,
+    right: '2%',
     marginRight: 36,
-    marginTop: 14,
+    marginTop: 20,
+    width: 24,
+    height: 24,
   },
 });
 export default styles;

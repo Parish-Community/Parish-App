@@ -31,7 +31,7 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     titleSmall: {
       fontSize: FontSize.small * 1.5,
       fontWeight: 'bold',
-      color: Colors.textGray800,
+      color: Colors.primary,
     },
     titleRegular: {
       fontSize: FontSize.regular * 2,
@@ -66,6 +66,12 @@ export default function ({ FontSize, Colors }: ThemeVariables) {
     },
     textLight: {
       color: Colors.white,
+    },
+    textBlue: {
+      color: Colors.textBlue400,
+    },
+    textYellow: {
+      color: Colors.textYellow400,
     },
     textLobster: {
       fontFamily: 'lobster',

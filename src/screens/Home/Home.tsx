@@ -2,12 +2,14 @@ import React from 'react';
 import { SafeAreaView, Text, View, Image } from 'react-native';
 import { useTheme } from '../../hooks';
 import { TouchableOpacity } from 'react-native';
+import styles from './styles';
+import { DonationComponent, ScheduleComponent } from '@/components';
 
 const HomeScreen = () => {
   const { Layout, Images, Fonts } = useTheme();
 
   return (
-    <SafeAreaView style={[Layout.fill, { backgroundColor: '#FFFFFF' }]}>
+    <SafeAreaView style={[Layout.fill, { backgroundColor: '#FAFAFC' }]}>
       <View
         style={[Layout.fullWidth, { height: 80, backgroundColor: '#174940' }]}
       >
@@ -31,22 +33,62 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View
-        style={[
-          Layout.fill,
-          Layout.fullWidth,
-          Layout.row,
-          Layout.justifyContentBetween,
-          { paddingHorizontal: '4%', top: '3%' },
-        ]}
-      >
-        <View>
-          <Image source={Images.icons.homeLeft} resizeMode={'contain'} />
-          <Text>Đăng ký giáo lý hôn nhân</Text>
+      <View style={[Layout.fill]}>
+        <View
+          style={[
+            Layout.fill,
+            Layout.fullWidth,
+            Layout.row,
+            Layout.justifyContentBetween,
+            { paddingHorizontal: '4%', top: '6%' },
+          ]}
+        >
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={[styles.homeOption, { left: '-4%' }]}
+          >
+            <Image
+              source={Images.icons.homeLeft}
+              resizeMode={'contain'}
+              style={{ marginBottom: 8 }}
+            />
+            <Text>Đăng ký giáo lý hôn nhân</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={[styles.homeOption, { marginLeft: 2 }]}
+          >
+            <Image
+              source={Images.icons.homeRight}
+              resizeMode={'contain'}
+              style={{ marginBottom: 8 }}
+            />
+            <Text>Quyên góp cho giáo xứ</Text>
+          </TouchableOpacity>
         </View>
-        <View>
-          <Image source={Images.icons.homeRight} resizeMode={'contain'} />
-          <Text>Quyên góp cho giáo xứ</Text>
+        <View
+          style={[
+            {
+              flex: 3,
+              paddingHorizontal: '3%',
+              top: '1%',
+              height: 560,
+            },
+          ]}
+        >
+          <View style={[{ marginBottom: 22 }]}>
+            <DonationComponent />
+          </View>
+          <View>
+            <ScheduleComponent />
+          </View>
+        </View>
+        <View style={[Layout.alignItemsCenter, { flex: 1 }]}>
+          <Image
+            style={[Layout.rowCenter]}
+            source={Images.banner}
+            resizeMode={'contain'}
+          />
         </View>
       </View>
     </SafeAreaView>

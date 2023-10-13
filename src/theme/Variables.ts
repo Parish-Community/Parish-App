@@ -17,6 +17,8 @@ export const Colors = {
   //Typography
   textGray800: '#000000',
   textGray400: '#4D4D4D',
+  textBlue400: '#386DF5',
+  textYellow400: '#D7B300',
   textGray200: '#A1A1A1',
   primary: '#174940',
   success: '#28a745',

@@ -1,13 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  homeOption: {
+  donationContainer: {
     backgroundColor: '#FFFFFF',
-    height: 100,
-    width: '50%',
-    paddingHorizontal: 8,
-    paddingVertical: 12,
-    marginRight: 4,
+    height: 120,
     borderRadius: 8,
     shadowColor: '#000',
     shadowOffset: {
@@ -17,6 +13,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
     elevation: 4,
+  },
+  donationContent: {
+    padding: '3%',
+  },
+  textHistory: {
+    fontSize: 16,
+    lineHeight: 24,
+    alignContent: 'center',
+    alignItems: 'center',
   },
 });
 export default styles;
