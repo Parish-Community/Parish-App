@@ -24,6 +24,7 @@ export default function ({}: ThemeVariables) {
       homeLeft: require('./assets/images/icon-home1.png'),
       homeRight: require('./assets/images/icon-home2.png'),
       arrowRight: require('./assets/images/icon-arrow-right.png'),
+      arrowRightBack: require('./assets/images/icon-arrow-right-back.png'),
     },
     animations: {
       schedule: require('./assets/animations/animation-schedule.json'),

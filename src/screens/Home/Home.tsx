@@ -4,8 +4,13 @@ import { useTheme } from '../../hooks';
 import { TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { DonationComponent, ScheduleComponent } from '@/components';
+import { NavigationProp } from '@react-navigation/native';
 
-const HomeScreen = () => {
+interface HomeScreenProps {
+  navigation: NavigationProp<any>;
+}
+
+const HomeScreen = (props: HomeScreenProps) => {
   const { Layout, Images, Fonts } = useTheme();
 
   return (
@@ -45,6 +50,7 @@ const HomeScreen = () => {
         >
           <TouchableOpacity
             activeOpacity={0.7}
+            onPress={() => props.navigation.navigate('MarriageScreen')}
             style={[styles.homeOption, { left: '-4%' }]}
           >
             <Image
