@@ -29,6 +29,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       disabled={disabled}
       style={[styles.button, { width, height, backgroundColor: bgColor }]}
@@ -57,12 +58,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: 48,
+    height: 46,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   buttonText: {
     fontSize: 16,

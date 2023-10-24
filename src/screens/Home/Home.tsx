@@ -25,15 +25,19 @@ const HomeScreen = (props: HomeScreenProps) => {
             { marginHorizontal: '4%', top: '3%' },
           ]}
         >
-          <View style={[Layout.rowHCenter]}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={[Layout.rowHCenter]}
+            onPress={() => props.navigation.navigate('ProfileScreen')}
+          >
             <Image source={Images.avatar} resizeMode={'contain'} />
             <Text
               style={[Fonts.textBold, Fonts.textLight, { marginLeft: '4%' }]}
             >
               Maria Trần Văn Trung
             </Text>
-          </View>
-          <TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.7}>
             <Image source={Images.icons.notification} resizeMode={'contain'} />
           </TouchableOpacity>
         </View>

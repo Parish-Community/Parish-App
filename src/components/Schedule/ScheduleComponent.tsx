@@ -32,7 +32,7 @@ const ScheduleComponent = ({ height, width, mode }: Props) => {
           <Text style={[Fonts.textBlue, Fonts.textBold, styles.textHistory]}>
             Detail
           </Text>
-          <View style={[{ height, width, top: '11%', marginLeft: 5 }]}>
+          <View style={[{ height, width, top: '9%', marginLeft: 5 }]}>
             <Image source={Images.icons.arrowRight} resizeMode={mode} />
           </View>
         </TouchableWithoutFeedback>

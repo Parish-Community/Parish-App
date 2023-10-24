@@ -65,7 +65,7 @@ const MarriageScreen = (props: MarriageScreenProps) => {
 
   return (
     <SafeAreaView
-      style={[Layout.fill, Layout.fullWidth, { backgroundColor: '#FAFAFC' }]}
+      style={[Layout.fill, Layout.fullWidth, { backgroundColor: '#FFFFFF' }]}
     >
       <View
         style={[
@@ -75,12 +75,17 @@ const MarriageScreen = (props: MarriageScreenProps) => {
         ]}
       >
         <TouchableOpacity
-          style={[Layout.colHCenter, { left: '14%' }]}
+          style={[Layout.colHCenter, { left: '18%', height: 46 }]}
           onPress={() => {
             props.navigation.goBack();
           }}
         >
-          <Image source={Images.icons.arrowRightBack} resizeMode={'contain'} />
+          <Image
+            width={60}
+            height={60}
+            source={Images.icons.arrowRightBack}
+            resizeMode={'contain'}
+          />
         </TouchableOpacity>
         <View style={[Layout.rowCenter, { left: '26%' }]}>
           <Text style={[Fonts.textBold, Fonts.textLight]}>
@@ -89,170 +94,208 @@ const MarriageScreen = (props: MarriageScreenProps) => {
         </View>
       </View>
       {currentStep ? (
-        <KeyboardAwareScrollView
-          showsVerticalScrollIndicator={false}
-          style={[Layout.fill, { paddingHorizontal: 16 }]}
-        >
-          <View style={[{ marginTop: 20 }]}>
-            <Text style={[Fonts.textBold]}>Điền thông tin cá nhân</Text>
-            <View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Họ tên"
-                  value={formDataFirst.fullName}
-                  onChangeText={text => handleChangeText('fullName', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Ngày sinh"
-                  value={formDataFirst.birthDate}
-                  onChangeText={text => handleChangeText('birthDate', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Giáo họ"
-                  value={formDataFirst.religion}
-                  onChangeText={text => handleChangeText('religion', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Họ tên bố"
-                  value={formDataFirst.fatherName}
-                  onChangeText={text => handleChangeText('fatherName', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Họ tên mẹ"
-                  value={formDataFirst.motherName}
-                  onChangeText={text => handleChangeText('motherName', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Email"
-                  value={formDataFirst.email}
-                  onChangeText={text => handleChangeText('email', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Số điện thoại"
-                  value={formDataFirst.phoneNumber}
-                  onChangeText={text => handleChangeText('phoneNumber', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Địa chỉ"
-                  value={formDataFirst.address}
-                  onChangeText={text => handleChangeText('address', text)}
-                />
+        <View style={[Layout.fill]}>
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            style={[Layout.fill, { paddingHorizontal: 16, height: 168 }]}
+          >
+            <View style={[{ marginTop: 10 }]}>
+              <Text style={[Fonts.textBold, { fontSize: 16 }]}>
+                Điền thông tin cá nhân
+              </Text>
+              <Spacer space="10" />
+              <View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Họ tên"
+                    value={formDataFirst.fullName}
+                    onChangeText={text => handleChangeText('fullName', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Ngày sinh"
+                    value={formDataFirst.birthDate}
+                    onChangeText={text => handleChangeText('birthDate', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Giáo họ"
+                    value={formDataFirst.religion}
+                    onChangeText={text => handleChangeText('religion', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Họ tên bố"
+                    value={formDataFirst.fatherName}
+                    onChangeText={text => handleChangeText('fatherName', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Họ tên mẹ"
+                    value={formDataFirst.motherName}
+                    onChangeText={text => handleChangeText('motherName', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Email"
+                    value={formDataFirst.email}
+                    onChangeText={text => handleChangeText('email', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Số điện thoại"
+                    value={formDataFirst.phoneNumber}
+                    onChangeText={text => handleChangeText('phoneNumber', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Địa chỉ"
+                    value={formDataFirst.address}
+                    onChangeText={text => handleChangeText('address', text)}
+                  />
+                </View>
               </View>
             </View>
-          </View>
-          <Spacer space="10" />
-          <View style={[{ flexDirection: 'row' }]}>
+            <Spacer space="10" />
+          </KeyboardAwareScrollView>
+          <View
+            style={[
+              {
+                paddingHorizontal: 16,
+                flexDirection: 'row',
+                bottom: 8,
+                height: 46,
+                backgroundColor: '#FFFFFF',
+              },
+            ]}
+          >
             <Button
               onPress={() => handleNextStep(400)}
-              height={48}
+              height={46}
               width={'100%'}
               bgColor={'#174940'}
               buttonTitle={'Next step'}
               loading={isFetching}
             />
           </View>
-        </KeyboardAwareScrollView>
+        </View>
       ) : (
-        <KeyboardAwareScrollView
-          showsVerticalScrollIndicator={false}
-          style={[Layout.fill, { paddingHorizontal: 16 }]}
-        >
-          <View style={[{ marginTop: 20 }]}>
-            <Text style={[Fonts.textBold]}>Điền thông tin bạn học</Text>
-            <View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Họ tên"
-                  value={formDataFirst.fullName_02}
-                  onChangeText={text => handleChangeText('fullName_02', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Ngày sinh"
-                  value={formDataFirst.birthDate_02}
-                  onChangeText={text => handleChangeText('birthDate_02', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Giáo họ"
-                  value={formDataFirst.religion_02}
-                  onChangeText={text => handleChangeText('religion_02', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Họ tên bố"
-                  value={formDataFirst.fatherName_02}
-                  onChangeText={text => handleChangeText('fatherName_02', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Họ tên mẹ"
-                  value={formDataFirst.motherName_02}
-                  onChangeText={text => handleChangeText('motherName_02', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Email"
-                  value={formDataFirst.email_02}
-                  onChangeText={text => handleChangeText('email_02', text)}
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Số điện thoại"
-                  value={formDataFirst.phoneNumber_02}
-                  onChangeText={text =>
-                    handleChangeText('phoneNumber_02', text)
-                  }
-                />
-              </View>
-              <View style={[{ marginBottom: 8 }]}>
-                <TextInputComponent
-                  inputLabel="Địa chỉ"
-                  value={formDataFirst.address_02}
-                  onChangeText={text => handleChangeText('address_02', text)}
-                />
+        <View style={[Layout.fill]}>
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            style={[Layout.fill, { paddingHorizontal: 16 }]}
+          >
+            <View style={[{ marginTop: 10 }]}>
+              <Text style={[Fonts.textBold, { fontSize: 16 }]}>
+                Điền thông tin bạn học
+              </Text>
+              <Spacer space="10" />
+              <View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Họ tên"
+                    value={formDataFirst.fullName_02}
+                    onChangeText={text => handleChangeText('fullName_02', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Ngày sinh"
+                    value={formDataFirst.birthDate_02}
+                    onChangeText={text =>
+                      handleChangeText('birthDate_02', text)
+                    }
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Giáo họ"
+                    value={formDataFirst.religion_02}
+                    onChangeText={text => handleChangeText('religion_02', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Họ tên bố"
+                    value={formDataFirst.fatherName_02}
+                    onChangeText={text =>
+                      handleChangeText('fatherName_02', text)
+                    }
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Họ tên mẹ"
+                    value={formDataFirst.motherName_02}
+                    onChangeText={text =>
+                      handleChangeText('motherName_02', text)
+                    }
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Email"
+                    value={formDataFirst.email_02}
+                    onChangeText={text => handleChangeText('email_02', text)}
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Số điện thoại"
+                    value={formDataFirst.phoneNumber_02}
+                    onChangeText={text =>
+                      handleChangeText('phoneNumber_02', text)
+                    }
+                  />
+                </View>
+                <View style={[{ marginBottom: 8 }]}>
+                  <TextInputComponent
+                    inputLabel="Địa chỉ"
+                    value={formDataFirst.address_02}
+                    onChangeText={text => handleChangeText('address_02', text)}
+                  />
+                </View>
               </View>
             </View>
-          </View>
-          <Spacer space="10" />
-          <View style={[Layout.row, Layout.justifyContentBetween]}>
+            <Spacer space="10" />
+          </KeyboardAwareScrollView>
+          <View
+            style={[
+              Layout.row,
+              Layout.justifyContentBetween,
+              {
+                paddingHorizontal: 16,
+                flexDirection: 'row',
+                backgroundColor: '#FFFFFF',
+                bottom: 8,
+                height: 46,
+              },
+            ]}
+          >
             <Button
               onPress={() => handlePrevStep()}
               height={46}
-              width={'50%'}
+              width={'48%'}
               bgColor={'#174940'}
               buttonTitle={'Prev step'}
             />
             <Spacer space="10" />
             <Button
               onPress={() => handlePrevStep()}
-              height={48}
+              height={46}
               width={'46%'}
               bgColor={'#174940'}
               buttonTitle={'Continue'}
             />
           </View>
-        </KeyboardAwareScrollView>
+        </View>
       )}
     </SafeAreaView>
   );

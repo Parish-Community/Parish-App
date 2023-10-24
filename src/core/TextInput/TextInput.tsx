@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: 15,
     lineHeight: 18,
-    fontWeight: '500',
+    fontWeight: '400',
   },
 });

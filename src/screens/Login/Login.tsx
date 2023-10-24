@@ -65,7 +65,9 @@ const Login = (props: LoginProps) => {
         </View>
       </View>
       <View style={[Layout.fullWidth, Layout.fill, Layout.col, { top: '10%' }]}>
-        <Text style={[{ marginLeft: 32, marginBottom: 4 }]}>Email</Text>
+        <Text style={[{ marginLeft: 32, marginBottom: 4, fontSize: 16 }]}>
+          Email
+        </Text>
         <View style={{ marginBottom: 20 }}>
           <View style={[Layout.fullWidth, { alignItems: 'center' }]}>
             <TextInput
@@ -77,7 +79,9 @@ const Login = (props: LoginProps) => {
           </View>
           {emailError && <Text style={[styles.textError]}>{emailError}</Text>}
         </View>
-        <Text style={[{ marginLeft: 32, marginBottom: 4 }]}>Password</Text>
+        <Text style={[{ marginLeft: 32, marginBottom: 4, fontSize: 16 }]}>
+          Password
+        </Text>
         <View style={{ marginBottom: 20 }}>
           <View style={[Layout.fullWidth, { alignItems: 'center' }]}>
             <TextInput
@@ -120,8 +124,11 @@ const Login = (props: LoginProps) => {
           </TouchableOpacity>
         </View>
         <View style={[{ alignItems: 'center', top: '8%' }, Layout.rowCenter]}>
-          <Text>Do not have an account? </Text>
-          <TouchableWithoutFeedback style={[styles.btnLogin]}>
+          <Text style={{ fontSize: 16 }}>Do not have an account ? </Text>
+          <TouchableWithoutFeedback
+            style={[styles.btnLogin]}
+            onPress={() => props.navigation.navigate('RegisterScreen')}
+          >
             <Text style={[styles.textForgotPassword]}>Register</Text>
           </TouchableWithoutFeedback>
         </View>
