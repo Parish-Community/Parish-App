@@ -7,10 +7,15 @@ import {
   SafeAreaView,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from 'react-native';
 import { useTheme } from '../../hooks';
 import styles from './styles';
 import { NavigationProp } from '@react-navigation/native';
+import { useLoginLogic } from './useLogic';
+import { loginAccount, verifyToken } from '../api';
+import { useDispatch } from 'react-redux';
+import { saveToken } from '@/store/login';
 
 interface LoginProps {
   navigation: NavigationProp<any>;
@@ -18,30 +23,49 @@ interface LoginProps {
 
 const Login = (props: LoginProps) => {
   const { Layout, Images, Fonts, Gutters } = useTheme();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isPasswordVisible, setPasswordVisibility] = useState(false);
-  const [emailError, setEmailError] = useState(null || '');
-  const [passwordError, setPasswordError] = useState(null || '');
+  const {
+    phonenumber,
+    setPhoneNumber,
+    password,
+    setPassword,
+    isPasswordVisible,
+    togglePasswordVisibility,
+    emailError,
+    passwordError,
+    validateInputs,
+    setPasswordError,
+  } = useLoginLogic();
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisibility(!isPasswordVisible);
-  };
+  const handleLogin = async () => {
+    const isValid = validateInputs();
 
-  const handleLogin = () => {
-    setEmailError('');
-    setPasswordError('');
-
-    if (!email) {
-      setEmailError('Please enter your email');
-    }
-
-    if (!password) {
-      setPasswordError('Please enter your password');
-    }
-    if (email && password) {
-      props.navigation.navigate('HomeScreen');
-    }
+    setIsLoading(true);
+    setTimeout(async () => {
+      if (isValid) {
+        const payload = {
+          phonenumber,
+          password,
+        };
+        try {
+          const response = await loginAccount(payload);
+          if (response.status === 200) {
+            console.log('Login success');
+            const token = response.data.data.accessToken;
+            const decodeToken = await verifyToken(token);
+            dispatch(saveToken({ token, userInfor: decodeToken.data.payload }));
+            setIsLoading(false);
+            props.navigation.navigate('HomeScreen');
+          }
+          setIsLoading(false);
+        } catch (error) {
+          console.log('Login failed', error);
+          setIsLoading(false);
+          setPasswordError('Login failed. Please check your account!!');
+        }
+      }
+    }, 2000);
   };
 
   return (
@@ -64,75 +88,83 @@ const Login = (props: LoginProps) => {
           </Text>
         </View>
       </View>
-      <View style={[Layout.fullWidth, Layout.fill, Layout.col, { top: '10%' }]}>
-        <Text style={[{ marginLeft: 32, marginBottom: 4, fontSize: 16 }]}>
-          Email
-        </Text>
-        <View style={{ marginBottom: 20 }}>
-          <View style={[Layout.fullWidth, { alignItems: 'center' }]}>
-            <TextInput
-              style={[styles.inputView]}
-              placeholder="Enter email"
-              onChangeText={value => setEmail(value)}
-              value={email}
-            />
-          </View>
-          {emailError && <Text style={[styles.textError]}>{emailError}</Text>}
+      {isLoading ? (
+        <View style={[Layout.fill, Layout.rowCenter]}>
+          <ActivityIndicator size="large" color="#0000ff" />
         </View>
-        <Text style={[{ marginLeft: 32, marginBottom: 4, fontSize: 16 }]}>
-          Password
-        </Text>
-        <View style={{ marginBottom: 20 }}>
-          <View style={[Layout.fullWidth, { alignItems: 'center' }]}>
-            <TextInput
-              style={[styles.inputView]}
-              secureTextEntry={!isPasswordVisible}
-              placeholder="Enter password"
-              onChangeText={text => setPassword(text)}
-              value={password}
-            />
-            <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
-              <Image
-                style={[styles.iconsPassword]}
-                source={
-                  isPasswordVisible
-                    ? Images.icons.eyeShow
-                    : Images.icons.eyeHide
-                }
-                resizeMode={'contain'}
+      ) : (
+        <View
+          style={[Layout.fullWidth, Layout.fill, Layout.col, { top: '10%' }]}
+        >
+          <Text style={[{ marginLeft: 32, marginBottom: 4, fontSize: 16 }]}>
+            Phone number
+          </Text>
+          <View style={{ marginBottom: 20 }}>
+            <View style={[Layout.fullWidth, { alignItems: 'center' }]}>
+              <TextInput
+                style={[styles.inputView]}
+                placeholder="Enter phone number"
+                onChangeText={value => setPhoneNumber(value)}
+                value={phonenumber}
               />
+            </View>
+            {emailError && <Text style={[styles.textError]}>{emailError}</Text>}
+          </View>
+          <Text style={[{ marginLeft: 32, marginBottom: 4, fontSize: 16 }]}>
+            Password
+          </Text>
+          <View style={{ marginBottom: 20 }}>
+            <View style={[Layout.fullWidth, { alignItems: 'center' }]}>
+              <TextInput
+                style={[styles.inputView]}
+                secureTextEntry={!isPasswordVisible}
+                placeholder="Enter password"
+                onChangeText={text => setPassword(text)}
+                value={password}
+              />
+              <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
+                <Image
+                  style={[styles.iconsPassword]}
+                  source={
+                    isPasswordVisible
+                      ? Images.icons.eyeShow
+                      : Images.icons.eyeHide
+                  }
+                  resizeMode={'contain'}
+                />
+              </TouchableWithoutFeedback>
+            </View>
+            {passwordError && (
+              <Text style={[styles.textError]}>{passwordError}</Text>
+            )}
+          </View>
+          <View style={[{ alignItems: 'flex-end', marginRight: '8%' }]}>
+            <TouchableWithoutFeedback style={[styles.btnLogin]}>
+              <Text style={[styles.textForgotPassword]}>Forgot password?</Text>
             </TouchableWithoutFeedback>
           </View>
-          {passwordError && (
-            <Text style={[styles.textError]}>{passwordError}</Text>
-          )}
+          <View style={[{ alignItems: 'center' }]}>
+            <TouchableOpacity
+              style={[styles.btnLogin]}
+              activeOpacity={0.7}
+              onPress={handleLogin}
+            >
+              <Text style={[Fonts.textBold, styles.textColorSecondary]}>
+                LOGIN
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[{ alignItems: 'center', top: '8%' }, Layout.rowCenter]}>
+            <Text style={{ fontSize: 16 }}>Do not have an account ? </Text>
+            <TouchableWithoutFeedback
+              style={[styles.btnLogin]}
+              onPress={() => props.navigation.navigate('RegisterScreen')}
+            >
+              <Text style={[styles.textForgotPassword]}>Register</Text>
+            </TouchableWithoutFeedback>
+          </View>
         </View>
-        <View style={[{ alignItems: 'flex-end', marginRight: '8%' }]}>
-          <TouchableWithoutFeedback style={[styles.btnLogin]}>
-            <Text style={[styles.textForgotPassword]}>Forgot password?</Text>
-          </TouchableWithoutFeedback>
-        </View>
-        <View style={[{ alignItems: 'center' }]}>
-          <TouchableOpacity
-            style={[styles.btnLogin]}
-            activeOpacity={0.7}
-            onPress={handleLogin}
-          >
-            <Text style={[Fonts.textBold, styles.textColorSecondary]}>
-              LOGIN
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[{ alignItems: 'center', top: '8%' }, Layout.rowCenter]}>
-          <Text style={{ fontSize: 16 }}>Do not have an account ? </Text>
-          <TouchableWithoutFeedback
-            style={[styles.btnLogin]}
-            onPress={() => props.navigation.navigate('RegisterScreen')}
-          >
-            <Text style={[styles.textForgotPassword]}>Register</Text>
-          </TouchableWithoutFeedback>
-        </View>
-      </View>
+      )}
     </SafeAreaView>
   );
 };
