@@ -3,14 +3,27 @@ import React from 'react';
 import styles from './styles';
 import { useTheme } from '../../hooks';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { NavigationProp } from '@react-navigation/native';
 
-type Props = {
+interface DonationComponentProps {
+  navigation: NavigationProp<any>;
   height?: DimensionValue;
   width?: DimensionValue;
   mode?: 'contain' | 'cover' | 'stretch' | 'repeat' | 'center';
-};
+}
 
-const DonationComponent = ({ height, width, mode }: Props) => {
+// type Props = {
+//   height?: DimensionValue;
+//   width?: DimensionValue;
+//   mode?: 'contain' | 'cover' | 'stretch' | 'repeat' | 'center';
+// };
+
+const DonationComponent = ({
+  height,
+  width,
+  mode,
+  navigation,
+}: DonationComponentProps) => {
   const { Layout, Fonts, Images } = useTheme();
 
   return (
@@ -27,6 +40,7 @@ const DonationComponent = ({ height, width, mode }: Props) => {
         </View>
         <TouchableWithoutFeedback
           style={[Layout.row, { marginLeft: 34, top: '4%' }]}
+          onPress={() => navigation.navigate('DonationScreen')}
         >
           <Text style={[Fonts.textBlue, Fonts.textBold, styles.textHistory]}>
             History

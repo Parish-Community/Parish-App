@@ -77,6 +77,7 @@ const HomeScreen = (props: HomeScreenProps) => {
           <TouchableOpacity
             activeOpacity={0.7}
             style={[styles.homeOption, { marginLeft: 2 }]}
+            onPress={() => props.navigation.navigate('DonationScreen')}
           >
             <Image
               source={Images.icons.homeRight}
@@ -97,7 +98,7 @@ const HomeScreen = (props: HomeScreenProps) => {
           ]}
         >
           <View style={[{ marginBottom: 22 }]}>
-            <DonationComponent />
+            <DonationComponent navigation={props.navigation} />
           </View>
           <View>
             <ScheduleComponent />

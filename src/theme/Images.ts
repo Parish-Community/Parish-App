@@ -25,9 +25,13 @@ export default function ({}: ThemeVariables) {
       homeRight: require('./assets/images/icon-home2.png'),
       arrowRight: require('./assets/images/icon-arrow-right.png'),
       arrowRightBack: require('./assets/images/icon-arrow-right-back.png'),
+      date: require('./assets/images/icon-date.png'),
     },
     animations: {
       schedule: require('./assets/animations/animation-schedule.json'),
+      welcome: require('./assets/animations/animation-welcome.json'),
+      loading: require('./assets/animations/animation-loading.json'),
+      donation: require('./assets/animations/animation-donation.json'),
     },
   };
 }

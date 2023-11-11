@@ -16,6 +16,7 @@ import { useLoginLogic } from './useLogic';
 import { loginAccount, verifyToken } from '../api';
 import { useDispatch } from 'react-redux';
 import { saveToken } from '@/store/login';
+import LottieView from 'lottie-react-native';
 
 interface LoginProps {
   navigation: NavigationProp<any>;
@@ -65,7 +66,7 @@ const Login = (props: LoginProps) => {
           setPasswordError('Login failed. Please check your account!!');
         }
       }
-    }, 2000);
+    }, 3000);
   };
 
   return (
@@ -90,7 +91,7 @@ const Login = (props: LoginProps) => {
       </View>
       {isLoading ? (
         <View style={[Layout.fill, Layout.rowCenter]}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#174940" />
         </View>
       ) : (
         <View
@@ -162,6 +163,17 @@ const Login = (props: LoginProps) => {
             >
               <Text style={[styles.textForgotPassword]}>Register</Text>
             </TouchableWithoutFeedback>
+          </View>
+          <View style={[Layout.rowCenter]}>
+            <LottieView
+              style={{
+                width: 240,
+                height: 320,
+              }}
+              source={Images.animations.welcome}
+              autoPlay
+              loop
+            />
           </View>
         </View>
       )}
