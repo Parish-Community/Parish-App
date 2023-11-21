@@ -13,7 +13,7 @@ import { useTheme } from '../../hooks';
 import styles from './styles';
 import { NavigationProp } from '@react-navigation/native';
 import { useLoginLogic } from './useLogic';
-import { loginAccount, verifyToken } from '../api';
+import { loginAccount, verifyToken } from '../../services/api/index';
 import { useDispatch } from 'react-redux';
 import { saveToken } from '@/store/login';
 import LottieView from 'lottie-react-native';
@@ -55,9 +55,15 @@ const Login = (props: LoginProps) => {
             console.log('Login success');
             const token = response.data.data.accessToken;
             const decodeToken = await verifyToken(token);
-            dispatch(saveToken({ token, userInfor: decodeToken.data.payload }));
+            dispatch(
+              saveToken({
+                token,
+                userInfor: decodeToken.data.payload,
+                isLogin: true,
+              }),
+            );
             setIsLoading(false);
-            props.navigation.navigate('HomeScreen');
+            // props.navigation.navigate('HomeScreen');
           }
           setIsLoading(false);
         } catch (error) {
@@ -155,14 +161,19 @@ const Login = (props: LoginProps) => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={[{ alignItems: 'center', top: '8%' }, Layout.rowCenter]}>
+          <View
+            style={[
+              { alignItems: 'center', top: '8%', width: '100%' },
+              Layout.rowCenter,
+            ]}
+          >
             <Text style={{ fontSize: 16 }}>Do not have an account ? </Text>
-            <TouchableWithoutFeedback
-              style={[styles.btnLogin]}
+            <TouchableOpacity
+              style={[{ width: '18%', height: 20 }]}
               onPress={() => props.navigation.navigate('RegisterScreen')}
             >
               <Text style={[styles.textForgotPassword]}>Register</Text>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
           </View>
           <View style={[Layout.rowCenter]}>
             <LottieView

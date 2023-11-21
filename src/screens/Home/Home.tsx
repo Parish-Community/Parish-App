@@ -64,7 +64,7 @@ const HomeScreen = (props: HomeScreenProps) => {
         >
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => props.navigation.navigate('MarriageScreen')}
+            onPress={() => props.navigation.navigate('Services')}
             style={[styles.homeOption, { left: '-4%' }]}
           >
             <Image
@@ -72,7 +72,7 @@ const HomeScreen = (props: HomeScreenProps) => {
               resizeMode={'contain'}
               style={{ marginBottom: 8 }}
             />
-            <Text>Đăng ký giáo lý hôn nhân</Text>
+            <Text>Đăng Ký Services</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.7}

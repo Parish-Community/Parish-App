@@ -10,6 +10,9 @@ import { NavigationProp } from '@react-navigation/native';
 import { useTheme } from '../../hooks';
 import styles from './styles';
 import { Button, Spacer } from '@/core';
+import { logout } from '../../services/api/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutApp } from '@/store/login';
 
 interface ProfileScreenProps {
   navigation: NavigationProp<any>;
@@ -17,18 +20,29 @@ interface ProfileScreenProps {
 
 const ProfileScreen = (props: ProfileScreenProps) => {
   const { Layout, Images, Fonts } = useTheme();
-  const [isFetching, setFetching] = useState(false);
+  const dispatch = useDispatch();
+  const token = useSelector(
+    (state: { login: { token: string; userInfor: any } }) => state.login,
+  );
 
   // const handleLogout = () => {
   //   console.log('logged out');
   // };
 
-  const handleLogout = (time = 1000) => {
-    setFetching(true);
-    setTimeout(() => {
-      setFetching(false);
-      props.navigation.navigate('Login');
-    }, time);
+  const handleLogout = async () => {
+    try {
+      await logout(token.token);
+      console.log('logged out');
+      dispatch(logoutApp());
+      // props.navigation.navigate('Login');
+    } catch (error) {
+      console.log('error', error);
+    }
+    // setFetching(true);
+    // setTimeout(() => {
+    //   setFetching(false);
+    //   props.navigation.navigate('Login');
+    // }, time);
   };
 
   return (
@@ -128,12 +142,11 @@ const ProfileScreen = (props: ProfileScreenProps) => {
         ]}
       >
         <Button
-          onPress={() => handleLogout(400)}
+          onPress={() => handleLogout()}
           height={46}
           width={'100%'}
           bgColor={'#174940'}
           buttonTitle={'Đăng xuất'}
-          loading={isFetching}
         />
       </View>
     </SafeAreaView>

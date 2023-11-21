@@ -13,11 +13,11 @@ import { useTheme } from '../../hooks';
 import { NavigationProp } from '@react-navigation/native';
 import { Button, Spacer } from '@/core';
 import styles from './styles';
-import DonationItem from './DonationItem';
+// import DonationItem from './DonationItem';
 import LottieView from 'lottie-react-native';
 import ModalBottom from '@/components/Modal/ModalBottom';
-import { PaymentScreen } from './PaymentScreen';
-import { PaymentView } from '@/components/PaymentView';
+// import { PaymentScreen } from './PaymentScreen';
+// import { PaymentView } from '@/components/PaymentView';
 
 interface DonationScreenProps {
   navigation: NavigationProp<any>;

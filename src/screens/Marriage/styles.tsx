@@ -18,5 +18,25 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
+  imageAvatar: {
+    width: 140,
+    height: 140,
+    borderRadius: 100,
+    borderWidth: 3,
+    borderColor: '#D7B300',
+  },
+  btnLoginModal: {
+    width: '100%',
+    backgroundColor: '#174940',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  textColorSecondary: {
+    color: '#D7B300',
+    fontSize: 16,
+  },
 });
 export default styles;

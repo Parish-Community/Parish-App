@@ -16,6 +16,7 @@ interface ButtonProps {
   bgColor: string;
   loading?: boolean;
   buttonTitle: string;
+  space?: number;
 }
 
 const Button = ({
@@ -26,13 +27,22 @@ const Button = ({
   height,
   bgColor,
   buttonTitle,
+  space,
 }: ButtonProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPress}
       disabled={disabled}
-      style={[styles.button, { width, height, backgroundColor: bgColor }]}
+      style={[
+        styles.button,
+        {
+          width,
+          height,
+          backgroundColor: disabled ? '#636366' : bgColor,
+          marginBottom: space,
+        },
+      ]}
     >
       {loading ? (
         <ActivityIndicator size="small" color="#fff" />
@@ -50,6 +60,7 @@ const Button = ({
 Button.defaultProps = {
   loading: false,
   disabled: false,
+  space: 0,
 };
 
 const styles = StyleSheet.create({

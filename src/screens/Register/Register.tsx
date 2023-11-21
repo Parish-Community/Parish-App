@@ -14,8 +14,9 @@ import styles from './styles';
 import { NavigationProp } from '@react-navigation/native';
 // import { Dropdown } from 'react-native-element-dropdown';
 // import DropDownPicker from 'react-native-dropdown-picker';
-import { registrationAccount } from '../api';
+
 import { Modal } from '@/components';
+import { registrationAccount } from '../../services/api/index';
 
 interface RegisterProps {
   navigation: NavigationProp<any>;

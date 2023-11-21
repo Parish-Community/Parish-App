@@ -4,3 +4,4 @@ export { default as ScheduleComponent } from './Schedule/ScheduleComponent';
 export { default as Title } from './ProgressSteps/TitleComponent';
 export { default as Content } from './ProgressSteps/ContentComponent';
 export { default as Modal } from './Modal/Modal';
+export { default as Services } from './Services/Services';

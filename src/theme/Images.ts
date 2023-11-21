@@ -32,6 +32,7 @@ export default function ({}: ThemeVariables) {
       welcome: require('./assets/animations/animation-welcome.json'),
       loading: require('./assets/animations/animation-loading.json'),
       donation: require('./assets/animations/animation-donation.json'),
+      church: require('./assets/animations/animation-app.json'),
     },
   };
 }
