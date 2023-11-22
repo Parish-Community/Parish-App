@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { useTheme } from '../../hooks';
 import styles from './styles';
@@ -13,6 +13,7 @@ import { Button, Spacer } from '@/core';
 import { logout } from '../../services/api/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutApp } from '@/store/login';
+import { getUserById } from '../../services/api/index';
 
 interface ProfileScreenProps {
   navigation: NavigationProp<any>;
@@ -24,26 +25,28 @@ const ProfileScreen = (props: ProfileScreenProps) => {
   const token = useSelector(
     (state: { login: { token: string; userInfor: any } }) => state.login,
   );
-
-  // const handleLogout = () => {
-  //   console.log('logged out');
-  // };
+  const [data, setData] = useState<any>();
 
   const handleLogout = async () => {
     try {
       await logout(token.token);
       console.log('logged out');
       dispatch(logoutApp());
-      // props.navigation.navigate('Login');
     } catch (error) {
       console.log('error', error);
     }
-    // setFetching(true);
-    // setTimeout(() => {
-    //   setFetching(false);
-    //   props.navigation.navigate('Login');
-    // }, time);
   };
+
+  const fetchData = async () => {
+    console.log('fetch data');
+    const user = await getUserById(token.userInfor.parishionerId);
+    setData(user.data.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  console.log('data', data);
 
   return (
     <SafeAreaView style={[Layout.fill, { backgroundColor: '#FAFAFC' }]}>
@@ -91,15 +94,19 @@ const ProfileScreen = (props: ProfileScreenProps) => {
           <View style={[Layout.alignItemsCenter]}>
             <Image
               style={[styles.imageAvatar]}
-              source={{
-                uri: 'https://i.pinimg.com/originals/bf/95/34/bf953419d76bf747cba69b55e6e03957.png',
-              }}
+              source={
+                data?.avatar === null
+                  ? {
+                      uri: 'https://img.myloview.com/posters/default-avatar-profile-ico n-vector-social-media-user-photo-700-205577532.jpg',
+                    }
+                  : { uri: data?.avatar }
+              }
               resizeMode={'contain'}
             />
           </View>
           <Spacer space="10" />
           <Text style={[Fonts.textBold, { fontSize: 18, lineHeight: 26 }]}>
-            Nguyen Duy Tuan
+            {`${data?.christianName} ${data?.fullname}`}
           </Text>
         </View>
         <Spacer space="50" />
@@ -116,6 +123,44 @@ const ProfileScreen = (props: ProfileScreenProps) => {
             >
               Thông tin cá nhân
             </Text>
+            <View>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Ngày sinh: {data?.dateOfBirth}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Số điện thoại: {data?.phonenumber}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Tên bố: {data?.name_father}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Tên mẹ: {data?.name_mother}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Người đỡ đầu: {data?.god_parent}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Giáo họ: {data?.parish_cluster?.name}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Giáo xứ: {data?.parish}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Giáo phận: {data?.diocese}
+              </Text>
+              <Spacer space="10" />
+              <Text style={[Fonts.textBold, { fontSize: 16, lineHeight: 18 }]}>
+                Address: {data?.address}
+              </Text>
+            </View>
           </View>
           <View>
             <Text

@@ -1,7 +1,6 @@
 import {
   Image,
   SafeAreaView,
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -14,7 +13,6 @@ import { Button } from '@/core';
 import LottieView from 'lottie-react-native';
 import { useSelector } from 'react-redux';
 import { getUserById } from '../../services/api/index';
-import ModalBottom from '@/components/Modal/ModalBottom';
 
 interface ServicesScreenProps {
   navigation: NavigationProp<any>;
@@ -95,7 +93,7 @@ export default function Services(props: ServicesScreenProps) {
       <View style={[Layout.fill]}>
         <View style={[styles.servicesBtn]}>
           <Button
-            onPress={() => props.navigation.navigate('DonationScreen')}
+            onPress={() => props.navigation.navigate('BaptismScreen')}
             height={46}
             width={'100%'}
             bgColor={'#174940'}

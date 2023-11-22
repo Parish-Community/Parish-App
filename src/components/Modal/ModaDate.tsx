@@ -8,7 +8,7 @@ type ModalBottomProps = {
   [x: string]: any;
 };
 
-const ModalBottom = ({
+const ModalDate = ({
   isVisible = false,
   children,
   onBackdropPress,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     padding: 16,
     alignSelf: 'center',
     width: '100%',
-    height: 520,
+    height: 460,
   },
   bottomModalView: {
     justifyContent: 'flex-end',
@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
   body: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 22,
     width: '100%',
     flex: 4,
   },
@@ -108,9 +107,9 @@ const styles = StyleSheet.create({
   },
 });
 
-ModalBottom.Header = ModalHeader;
-ModalBottom.Container = ModalContainer;
-ModalBottom.Body = ModalBody;
-ModalBottom.Footer = ModalFooter;
+ModalDate.Header = ModalHeader;
+ModalDate.Container = ModalContainer;
+ModalDate.Body = ModalBody;
+ModalDate.Footer = ModalFooter;
 
-export default ModalBottom;
+export default ModalDate;

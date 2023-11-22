@@ -7,6 +7,7 @@ import { NavigationProp } from '@react-navigation/native';
 
 interface DonationComponentProps {
   navigation: NavigationProp<any>;
+  amount?: any;
   height?: DimensionValue;
   width?: DimensionValue;
   mode?: 'contain' | 'cover' | 'stretch' | 'repeat' | 'center';
@@ -22,6 +23,7 @@ const DonationComponent = ({
   height,
   width,
   mode,
+  amount,
   navigation,
 }: DonationComponentProps) => {
   const { Layout, Fonts, Images } = useTheme();
@@ -71,9 +73,9 @@ const DonationComponent = ({
               { fontSize: 22, lineHeight: 26 },
             ]}
           >
-            100.000
+            {amount}
           </Text>
-          <Text
+          {/* <Text
             style={[
               Fonts.textBold,
               Fonts.textYellow,
@@ -81,7 +83,7 @@ const DonationComponent = ({
             ]}
           >
             VND
-          </Text>
+          </Text> */}
         </View>
       </View>
     </View>
@@ -92,6 +94,7 @@ DonationComponent.defaultProps = {
   height: 20,
   width: 20,
   mode: 'contain',
+  amount: 0,
 };
 
 export default DonationComponent;

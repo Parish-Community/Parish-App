@@ -18,5 +18,12 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
+  imageAvatar: {
+    width: 45,
+    height: 45,
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: '#D7B300',
+  },
 });
 export default styles;

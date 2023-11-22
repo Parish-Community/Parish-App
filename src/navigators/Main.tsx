@@ -8,6 +8,7 @@ import {
   ProfileScreen,
   DonationScreen,
   CoupleDetailScreen,
+  BaptismScreen,
 } from '../screens';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
@@ -33,6 +34,7 @@ const MainNavigator = () => {
           <Stack.Screen name="DonationScreen" component={DonationScreen} />
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
           <Stack.Screen name="Services" component={Services} />
+          <Stack.Screen name="BaptismScreen" component={BaptismScreen} />
         </>
       ) : (
         <>

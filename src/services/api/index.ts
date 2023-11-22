@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://192.168.1.14:8888/api/v1',
+  baseURL: 'http://192.168.50.102:8888/api/v1',
 });
 
 const setAuthTokenHeader = async (token: string) => {
@@ -36,7 +36,6 @@ export const verifyToken = async (authToken: string) => {
 // };
 
 export const getUserById = async (id: any) => {
-  // await setAuthTokenHeader(authToken);
   return api.get(`/parishioner/profile/${id}`);
 };
 
@@ -54,5 +53,35 @@ export const coupleRegistration = async (payload: any, authToken: any) => {
   await setAuthTokenHeader(authToken);
   const data = await api.post('/course/couple-registration', payload);
   console.log(data);
+  return data;
+};
+
+export const payment = async (payload: any, authToken: any) => {
+  await setAuthTokenHeader(authToken);
+  const data = await api.post('/payments', payload);
+  return data;
+};
+
+export const getAllPayment = async (authToken: any) => {
+  await setAuthTokenHeader(authToken);
+  const data = await api.get('/payments/donations/user');
+  return data;
+};
+
+export const getTotalDonation = async (authToken: any) => {
+  await setAuthTokenHeader(authToken);
+  const data = await api.get('/payments/donations/total');
+  return data;
+};
+
+export const baptismRegistration = async (payload: any, authToken: any) => {
+  await setAuthTokenHeader(authToken);
+  const data = await api.post('/baptism', payload);
+  return data;
+};
+
+export const getBaptismRegistration = async (authToken: any) => {
+  await setAuthTokenHeader(authToken);
+  const data = await api.get('/baptism/baptism-registration');
   return data;
 };

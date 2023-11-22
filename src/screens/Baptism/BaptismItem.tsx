@@ -10,31 +10,25 @@ interface DonationScreenProps {
   item: any;
 }
 
-const DonationItem = (props: DonationScreenProps) => {
+const BaptismItem = (props: DonationScreenProps) => {
   const { Images, Fonts } = useTheme();
 
   return (
     <TouchableOpacity activeOpacity={0.6}>
       <View style={[styles.itemDonation]}>
         <View style={{ flexDirection: 'row' }}>
-          <Image
-            width={140}
-            height={80}
-            source={Images.icons.date}
-            resizeMode={'contain'}
-          />
           <Text style={[styles.itemTitleDate]}>
-            {props.item.initiatedAt.toString().split('T')[0]}
+            {`${props.item.parishioner.christianName} ${props.item.parishioner.fullname}`}
           </Text>
         </View>
         <View>
           <Text
             style={[
               Fonts.textBold,
-              { fontSize: 18, lineHeight: 24, color: '#174940' },
+              { fontSize: 16, lineHeight: 24, color: '#174940' },
             ]}
           >
-            {props.item.amount}
+            {props.item.isAccepted ? 'Accepted' : 'Pending'}
           </Text>
         </View>
       </View>
@@ -43,4 +37,4 @@ const DonationItem = (props: DonationScreenProps) => {
   );
 };
 
-export default DonationItem;
+export default BaptismItem;

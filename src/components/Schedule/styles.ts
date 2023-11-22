@@ -23,5 +23,19 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   },
+  baptismItem: {
+    paddingHorizontal: '4%',
+    backgroundColor: '#FFF9DE',
+    height: 110,
+    borderRadius: 20,
+  },
+  textStatusBaptism: {
+    fontSize: 16,
+    lineHeight: 24,
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: 12,
+    color: '#4D4D4D',
+  },
 });
 export default styles;

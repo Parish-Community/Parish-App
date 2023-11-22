@@ -9,6 +9,8 @@ export const COLORS = {
   bgButtonSecondary: '#FECDCA',
   bgTextInput: '#FFF9DE',
   errorMessage: '#F04438',
+  textInput: '#174940',
+  placeholder: '#BDBDBD',
 };
 
 export const CUSHION = 10;

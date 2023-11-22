@@ -1,4 +1,10 @@
-import { View, TextInput, StyleSheet, Text } from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import { COLORS } from '../constants';
 
@@ -6,24 +12,49 @@ interface TextInputProps {
   inputLabel?: string;
   placeholder?: string;
   value: string;
+  editable?: boolean;
+  selectTextOnFocus?: boolean;
   onChangeText: (text: string) => void;
+  onChange?: () => void;
+  isDatePicker?: boolean;
 }
 
 export default function TextInputComponent({
   inputLabel,
   placeholder,
   value,
+  editable,
+  selectTextOnFocus,
   onChangeText,
+  isDatePicker,
+  onChange,
 }: TextInputProps) {
   return (
     <View>
       <Text style={[styles.inputLabel]}>{inputLabel}</Text>
-      <TextInput
-        style={styles.inputView}
-        placeholder={placeholder}
-        value={value}
-        onChangeText={onChangeText}
-      />
+      {isDatePicker ? (
+        <TouchableOpacity onPress={onChange}>
+          <TextInput
+            style={styles.inputView}
+            placeholder={placeholder}
+            value={value}
+            onChangeText={onChangeText}
+            editable={editable}
+            selectTextOnFocus={selectTextOnFocus}
+          >
+            <TouchableOpacity onPress={onChange} />
+          </TextInput>
+        </TouchableOpacity>
+      ) : (
+        <TextInput
+          style={styles.inputView}
+          placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+          editable={editable}
+          selectTextOnFocus={selectTextOnFocus}
+        />
+      )}
     </View>
   );
 }
@@ -31,6 +62,10 @@ export default function TextInputComponent({
 TextInputComponent.defaultProps = {
   inputLabel: '',
   placeholder: '',
+  editable: true,
+  selectTextOnFocus: false,
+  onChange: () => {},
+  isDatePicker: false,
 };
 
 const styles = StyleSheet.create({
